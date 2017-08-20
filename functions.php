@@ -36,7 +36,7 @@ function createTables(){
 	    ."pid VARCHAR(50) NOT NULL ,"
 	    ."box VARCHAR(50) NOT NULL ,"
 	    ."color VARCHAR(50) NOT NULL ,"
-	    ."title VARCHAR(50) NOT NULL  );";
+	    ."title TEXT NOT NULL  );";
 	   
 	    
 		$result=$db->query($sql);
@@ -87,7 +87,6 @@ if (isset($_POST["addReview"])){
         else{
             //ECHO "<div class='alertBoxWrapper'><div class='alertBox'><h102>information saved</h102></div></div>";
         }
-      // initSession();  
 }
 
 
@@ -109,7 +108,6 @@ if (isset($_POST["addToList"])){
         else{
             //ECHO "<div class='alertBoxWrapper'><div class='alertBox'><h102>information saved</h102></div></div>";
         }
-      // initSession();  
 }
 
 
@@ -126,13 +124,20 @@ function displayTVList(){
         echo "<span> No listings found </span>";
         return; // No contacts 
     } 
-    // Fill scroll area             
     foreach ($ds as $row){
-        //if($row["box"]=="boxResponse") {echo "<div class='".$row["color"]." box'>".$row["title"]."</div>";}
         if($row["box"]=="boxOpen") { echo "<div class='".$row["color"]." greyBar clearfix'>";}
-        if($row["box"]=="boxReview" || $row["box"]=="boxResponse"){echo "<div data-id='".$row["id"]."' class='".$row["color"]." box'>".$row["title"]."<div class='deleteFdback-wrapper'><h10>Delete</h10></div></div>";}
-        if($row["box"]=="boxClose") { echo "<div contentEditable='true' class='enterCommentBox'>Write a comment...</div></div>";}
+        if($row["box"]=="boxReview" || $row["box"]=="boxResponse"){echo "<div class='".$row["color"]." box'>".$row["title"]."<div class='deleteFdback-wrapper'><h10 data-id='".$row["id"]."'>Delete</h10></div></div>";}
+        if($row["box"]=="boxClose") { echo "<div class='profile-addComment'></div><div contentEditable='true' class='enterCommentBox'>Write a comment...</div></div>";}
 
     }
+}
+
+/////////////////////////// Delete Feedback ///////////////////////////
+
+if(isset($_POST["deletFdback"])){
+		$db = openDB();
+        $sql ="DELETE FROM `user` WHERE id = "."'".$_POST["feedback-id"]."'"; 
+        $result = $db->query($sql);
+	     
 }
 ?>
