@@ -152,8 +152,9 @@
 		.tv-list-table img{
 			display: block;	
 		}
-		.td-img{
-/* 			border-bottom:20px solid #fff; */
+		.td-img img{
+			height: 282px;
+			width: 200px;
 		}
 		.desc{
 			box-sizing: content-box;
@@ -168,7 +169,7 @@
 
 		.tv-list-table tr .summary-wrapper{
 			overflow: hidden;
-			height: 242px;
+			height: 232px;
 		}
 		.tv-list-table tr .summary-wrapper:hover{
 			height: auto;

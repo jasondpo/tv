@@ -52,13 +52,12 @@
 				<input type="text" class="tvTitle" name="tvTitle"/>
 				<input type="text" class="tvSummary" name="tvSummary"/>
 				<input type="text" class="userReview" name="userReview"/>		
-				<input type="submit" class="addTVInfo" name="addTVInfo" value="submit">		
+				<input type="submit" class="addReview" name="addReview" value="submit">		
 			</form> 
 			
 			<!-- This form starts a conversation -->
-			<form action="list.php" method="post"  class="reviewForm" autocomplete='off'>
-
-				 
+<!--
+			<form action="list.php" method="post"  class="reviewForm" autocomplete='off'>				 
 				<select name="myColors">
 					<option value="purple">purple</option>
 					<option value="red">red</option>
@@ -68,9 +67,9 @@
 				
 				<input type="text" id="title" name="title"/>
 				
-				<input type="submit" class="addReview" name="addReview" value="submit">	
-								
+				<input type="submit" class="addReview" name="addReview" value="submit">									
 			</form> 
+-->
 			
 			
 		</div>
