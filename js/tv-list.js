@@ -79,11 +79,11 @@ $(function(){
 // 	This collects all the info from the selected tv show 
 	$(document).on("click", ".tv-list-table .shows tr", function(e) {
     	tvID=$(this).attr('data-tvid');
-    	tvImg=$(this).find('td:first img').attr('src');
+    	tvflyer=$(this).find('td:first img').attr('src');
     	tvTitle=$(this).find('td:last h12').text();
     	tvSummary=$(this).find('td:last div').text();
     	$('.tvID').val(tvID);
-    	$('.tvImg').val(tvImg);
+    	$('.tvflyer').val(tvflyer);
     	$('.tvTitle').val(tvTitle);
     	$('.tvSummary').val(tvSummary);
 	});

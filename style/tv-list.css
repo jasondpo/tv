@@ -43,6 +43,12 @@
 			line-height: 1.4em;
 			color: #666;
 		}
+/*
+		h14{ tv title
+			display: block;	
+			background-color: aqua;
+		}
+*/
 		.banner{
 			position: fixed;
 			top:0px;
@@ -251,6 +257,13 @@
 		}
 
 		.listForm{
+			margin-bottom: 20px;
+		}
+		.tvThmb{
+			position: relative;
+			width: 200px;
+			background-color: #f90;
+			height: 282px;
 			margin-bottom: 20px;
 		}
 		.box{

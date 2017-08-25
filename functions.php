@@ -33,10 +33,11 @@ function createTables(){
 	     
 	    $sql="CREATE TABLE user ("
 	    ."id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,"
-	    ."pid VARCHAR(50) NOT NULL ,"
-	    ."box VARCHAR(50) NOT NULL ,"
+	    ."pid VARCHAR(50) NOT NULL,"
+	    ."tvphoto TEXT NOT NULL,"
+	    ."box VARCHAR(50) NOT NULL,"
 	    ."showid VARCHAR(50) NOT NULL ,"
-	    ."title TEXT NOT NULL  );"
+	    ."title TEXT NOT NULL);"
 	    ."INSERT INTO user (showid)"
 	    ." VALUES"."( '9999');"; 
 	   
@@ -75,8 +76,8 @@ if (isset($_POST["addReview"])){
     $db = openDB();               
 	$n = "SELECT id FROM user ORDER BY id DESC LIMIT 1";
 	$ds = $db->query($n);
-	foreach ($ds as $row){
-	$theID=$row["id"];	
+	foreach ($ds as $row){  
+	$theID=$row["id"];	// 
  	//if($theID=="1"){$theID="999";}
  	//echo "<script>alert(".$theID.")</script>";
 	};
@@ -86,12 +87,12 @@ if (isset($_POST["addReview"])){
 	$ni = "SELECT showid FROM user WHERE id='".$theID."'ORDER BY showid ASC";  ////////////////////////////// this needs to grab the smallest showid
 	$dsi = $dbi->query($ni);
 	foreach ($dsi as $rowi){
- 	if($rowi["showid"]=="9999"){
-	 	$_SESSION["startID"]="999";
+ 	if($rowi["showid"]=="99999"){
+	 	$_SESSION["startID"]="9999";
 	 	echo "<script>alert(".$_SESSION["startID"].")</script>";
 	}
  	else{
-	 	$_SESSION["startID"]=$_SESSION["startID"]-1;
+	 	$_SESSION["startID"]=$rowi["showid"]-1;
 	 	echo "<script>alert(".$_SESSION["startID"].")</script>";
  		}	
  	};
@@ -100,11 +101,12 @@ if (isset($_POST["addReview"])){
 //////////
 if (isset($_POST["addReview"])){
     $db = openDB();
-        $sql ="INSERT INTO user (pid, box, showid, title)" // 'color' would be replaced by tv show's unique id
+        $sql ="INSERT INTO user (pid, box, tvphoto, showid, title)" // 'color' would be replaced by tv show's unique id
                 ." VALUES "
-                ."( '0','boxOpen','".$_SESSION["startID"]."', ''),"
-                ."( '1','boxReview','".$_SESSION["startID"]."','".$_POST['tvTitle']."'),"
-                ."( '3','boxClose','".$_SESSION["startID"]."', '');";
+                ."( '0','boxOpen','','".$_SESSION["startID"]."', ''),"
+                ."( '1','boxReview','".$_POST['tvflyer']."','".$_SESSION['startID']."','".$_POST['tvTitle']."'),"
+//                 ."( '1','boxReview','".$_POST['tvImg']."','".$_SESSION['startID']."','".$_POST['tvTitle']."'),"
+                ."( '3','boxClose','','".$_SESSION["startID"]."', '');";
 
                  
         $result = $db->query($sql);
@@ -146,16 +148,18 @@ if (isset($_POST["addToList"])){
 function displayTVList(){
     
     $db = openDB();               
-    $query = "SELECT id, showid, title, box, pid FROM user ORDER BY showid, pid, id";
+    $query = "SELECT tvphoto, showid, title, box, pid, id FROM user ORDER BY showid, pid, id";
     $ds = $db->query($query);
      $cnt = $ds->rowCount();
     if ($cnt == 0){
         echo "<span> No listings found </span>";
         return; // No contacts 
     }
+
     foreach ($ds as $row){
         if($row["box"]=="boxOpen") { echo "<div class='".$row["showid"]." greyBar clearfix'>";}
-        if($row["box"]=="boxReview" || $row["box"]=="boxResponse"){echo "<div class='".$row["showid"]." box'>".$row["title"]."<div class='deleteFdback-wrapper'><h10 data-id='".$row["id"]."'>Delete</h10></div></div>";}
+         if($row["box"]=="boxReview") { echo "<div class='tvThmb'><img src='".$row["tvphoto"]."'></div>";}
+        if($row["box"]=="boxReview" || $row["box"]=="boxResponse"){echo "<div class='".$row["showid"]." box'><h14>".$row["title"]."</h14><div class='deleteFdback-wrapper'><h10 data-id='".$row["id"]."'>Delete</h10></div></div>";}
         if($row["box"]=="boxClose") { echo "<div class='profile-addComment'></div><div contentEditable='true' class='enterCommentBox'>Write a comment...</div></div>";}
 
     }

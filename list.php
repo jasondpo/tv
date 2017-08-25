@@ -48,10 +48,10 @@
 			<!-- This form stores TV Data after it is clicked AND the review-->
 			<form action="list.php" method="post" class="storeForm" style="display:block" >
 				<input type="text" class="tvID" name="tvID"/>
-				<input type="text" class="tvImg" name="tvImg"/>
 				<input type="text" class="tvTitle" name="tvTitle"/>
 				<input type="text" class="tvSummary" name="tvSummary"/>
-				<input type="text" class="userReview" name="userReview"/>		
+				<input type="text" class="userReview" name="userReview"/>
+				<input type="text" class="tvflyer" name="tvflyer"/>		
 				<input type="submit" class="addReview" name="addReview" value="submit">		
 			</form> 
 			
