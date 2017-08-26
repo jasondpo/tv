@@ -1,6 +1,7 @@
-	html, bod{
+	html, body{
 			font-family:sans-serif;
 			background-color: #E9EBEE;
+			margin: 0px 10px;
 		}
 		.clearfix:after {
 			visibility: hidden;
@@ -43,19 +44,54 @@
 			line-height: 1.4em;
 			color: #666;
 		}
-/*
-		h14{ tv title
-			display: block;	
-			background-color: aqua;
+		h14{ /* tv title */
+			display: block;
+			box-sizing: border-box;
+			padding: 0px 0px 6px 15px;
+			font-size: 18px;
+			color: #333;	
 		}
-*/
+		h15{ /* tv summary */
+			display: block;	
+			box-sizing: border-box;
+			padding: 0px 15px 15px 15px;
+			font-size: 13px;
+			line-height: 1.3em;
+			color: #999;
+		}
+		h16{ /* feedback/response */
+			display: block;
+			box-sizing: border-box;
+			padding: 0px 7px;	
+		}
+		h17{ /* initial review */
+			display: block;
+			font-size: 13px;
+			margin-left: 50px;
+			line-height: 1.3em;
+			color: #333;
+		}
+		h18{ /* Profile name above initial review */
+			display: block;
+			margin: 0px 0px 6px 50px;
+			font-size: 13px;
+			color: #365899;
+			font-weight: 800;
+		}
+		.tvTable{
+			background-color: #fff;
+			box-sizing: border-box;
+			padding: 15px 10px 10px 10px;
+			margin-bottom: 15px;
+			border-bottom:1px solid #dddfe2;
+		}
 		.banner{
 			position: fixed;
 			top:0px;
 			left: 0px;
 			right: 0px;
 			height: 42px;
-			background-color: #333;
+			background-color: #383E4C;
 			z-index: 2;
 		}
 		.logo{
@@ -96,7 +132,7 @@
 			background-image: url(../images/tv-icon.png);			
 		}
 		
-/* //////////////////////////////////////////////////////////////// */
+/* ///////////////////////// Overlat Section /////////////////////////////////////// */
 		.overlay-tv-select{
 			z-index: 1;
 			position: fixed;
@@ -145,7 +181,6 @@
 			border: 1px solid #DDDFE2;	
 		}
 		td{
-			cursor: pointer;
 			box-sizing: border-box;
 			border-bottom:0px solid #fff;
 			border-spacing: 0px;
@@ -269,31 +304,39 @@
 		.box{
 			width: 100%;
 			min-height: 30px;
+			overflow: hidden;
 			font-family: sans-serif;
 			box-sizing: border-box;
 			padding: 7px;
 			color: #1D2129;
-			margin-bottom: 10px;
+			display: block;
 			font-size: 13px;
 		}
 		.purple, .red, .blue, .green{
 /* 			background-color: #DDD; */
 		}
+		.boxUnderline{
+			border-bottom: 1px solid #EEE;	
+			font-size: 13px;
+			padding-bottom: 10px;
+			margin-bottom: 10px;			
+		}
 		.greyBar{
 			position: relative;
 			font-family: sans-serif;
 			box-sizing: border-box;
-			padding: 7px;
+			padding: 0px 0px 10px 0px;
 			color: white;
-			margin-bottom: 10px;
+			margin-bottom: 12px;
 			background-color: #F6F7F9;
-			border-radius: 4px;	
+			border-radius: 6px;	
 			box-sizing: border-box;
-			border: 1px solid #DDDFE2;		
+			border: 1px solid #DDDFE2;
+			overflow: hidden;		
 		}
 		.enterCommentBox{
 			display: block;
-			margin-left: 45px;
+			margin: 15px 10px 0px 55px;
 			padding: 10px 10px 6px 14px;
 			background-color: white;
 			border-radius: 20px;
@@ -318,9 +361,25 @@
 			box-sizing: border-box;
 			border: 1px solid #DDDFE2;
 			float: left;
+			margin: 15px 0px 0px 10px;
+			cursor: pointer;
+		}
+		.profile-reviewer{
+			width: 34px;
+			height: 34px;
+			border-radius: 100%;
+			background-image: url(../images/profile-img-add-comment.png);
+			background-position: center bottom;
+			background-color: white;
+			box-sizing: border-box;
+			border: 1px solid #DDDFE2;
+			float: left;
+			margin: 0px 0px 0px 0px;
 			cursor: pointer;
 		}
 		.deleteFdback-wrapper{
+			box-sizing: border-box;
+			padding-right: 7px;
 			display: block;
 			margin-top: 6px;
 			text-align: right;

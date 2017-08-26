@@ -36,8 +36,11 @@ function createTables(){
 	    ."pid VARCHAR(50) NOT NULL,"
 	    ."tvphoto TEXT NOT NULL,"
 	    ."box VARCHAR(50) NOT NULL,"
-	    ."showid VARCHAR(50) NOT NULL ,"
-	    ."title TEXT NOT NULL);"
+	    ."showid VARCHAR(50) NOT NULL,"
+	    ."summary TEXT NOT NULL,"
+	    ."review TEXT NOT NULL,"
+	    ."title TEXT NOT NULL,"
+	    ."feedback TEXT NOT NULL);"
 	    ."INSERT INTO user (showid)"
 	    ." VALUES"."( '9999');"; 
 	   
@@ -89,11 +92,11 @@ if (isset($_POST["addReview"])){
 	foreach ($dsi as $rowi){
  	if($rowi["showid"]=="99999"){
 	 	$_SESSION["startID"]="9999";
-	 	echo "<script>alert(".$_SESSION["startID"].")</script>";
+	 	//echo "<script>alert(".$_SESSION["startID"].")</script>";
 	}
  	else{
 	 	$_SESSION["startID"]=$rowi["showid"]-1;
-	 	echo "<script>alert(".$_SESSION["startID"].")</script>";
+	 	//echo "<script>alert(".$_SESSION["startID"].")</script>";
  		}	
  	};
 
@@ -101,12 +104,12 @@ if (isset($_POST["addReview"])){
 //////////
 if (isset($_POST["addReview"])){
     $db = openDB();
-        $sql ="INSERT INTO user (pid, box, tvphoto, showid, title)" // 'color' would be replaced by tv show's unique id
+        $sql ="INSERT INTO user (pid, box, tvphoto, showid, title, summary, review)" // 
                 ." VALUES "
-                ."( '0','boxOpen','','".$_SESSION["startID"]."', ''),"
-                ."( '1','boxReview','".$_POST['tvflyer']."','".$_SESSION['startID']."','".$_POST['tvTitle']."'),"
+                ."( '0','boxOpen','','".$_SESSION["startID"]."', '', '', ''),"
+                ."( '1','boxReview','".$_POST['tvflyer']."','".$_SESSION['startID']."','".$_POST['tvTitle']."','".mysql_real_escape_string($_POST['tvSummary'])."','".mysql_real_escape_string($_POST['userReview'])."'),"
 //                 ."( '1','boxReview','".$_POST['tvImg']."','".$_SESSION['startID']."','".$_POST['tvTitle']."'),"
-                ."( '3','boxClose','','".$_SESSION["startID"]."', '');";
+                ."( '3','boxClose','','".$_SESSION["startID"]."','', '', '');";
 
                  
         $result = $db->query($sql);
@@ -125,7 +128,7 @@ if (isset($_POST["addReview"])){
 
 if (isset($_POST["addToList"])){
     $db = openDB();
-        $sql ="INSERT INTO user (pid, box, showid, title)"
+        $sql ="INSERT INTO user (pid, box, showid, feedback)"
             ." VALUES " 
             ."( '2','boxResponse','"
             .$_POST['myColors']."','"
@@ -148,7 +151,7 @@ if (isset($_POST["addToList"])){
 function displayTVList(){
     
     $db = openDB();               
-    $query = "SELECT tvphoto, showid, title, box, pid, id FROM user ORDER BY showid, pid, id";
+    $query = "SELECT tvphoto, showid, title, box, pid, id, summary, feedback, review FROM user ORDER BY showid, pid, id";
     $ds = $db->query($query);
      $cnt = $ds->rowCount();
     if ($cnt == 0){
@@ -158,8 +161,8 @@ function displayTVList(){
 
     foreach ($ds as $row){
         if($row["box"]=="boxOpen") { echo "<div class='".$row["showid"]." greyBar clearfix'>";}
-         if($row["box"]=="boxReview") { echo "<div class='tvThmb'><img src='".$row["tvphoto"]."'></div>";}
-        if($row["box"]=="boxReview" || $row["box"]=="boxResponse"){echo "<div class='".$row["showid"]." box'><h14>".$row["title"]."</h14><div class='deleteFdback-wrapper'><h10 data-id='".$row["id"]."'>Delete</h10></div></div>";}
+        if($row["box"]=="boxReview") { echo "<table class='tvTable'><tbody><tr><td colspan='2'><div class='boxUnderline'><div class='profile-reviewer'></div><h18>Jason Dobbins</h18><h17>".$row["review"]."</h17></div></td></tr><td valign='top'><img src='".$row["tvphoto"]."'></td><td valign='top'><h14>".$row["title"]."</h14><h15>".$row["summary"]."</h15></td><tbody></table>";} 
+        if($row["box"]=="boxReview" || $row["box"]=="boxResponse"){echo "<div class='".$row["showid"]." box'><h16>".$row["feedback"]."</h16><div class='deleteFdback-wrapper'><h10 data-id='".$row["id"]."'>Delete</h10></div></div>";}
         if($row["box"]=="boxClose") { echo "<div class='profile-addComment'></div><div contentEditable='true' class='enterCommentBox'>Write a comment...</div></div>";}
 
     }

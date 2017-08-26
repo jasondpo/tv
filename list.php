@@ -3,7 +3,7 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title> TV List </title> 
+		<title> FriendFlix </title> 
 		
 		<!-- Normalize CSS Stylesheet -->
 		<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
@@ -54,23 +54,7 @@
 				<input type="text" class="tvflyer" name="tvflyer"/>		
 				<input type="submit" class="addReview" name="addReview" value="submit">		
 			</form> 
-			
-			<!-- This form starts a conversation -->
-<!--
-			<form action="list.php" method="post"  class="reviewForm" autocomplete='off'>				 
-				<select name="myColors">
-					<option value="purple">purple</option>
-					<option value="red">red</option>
-					<option value="blue">blue</option>
-					<option value="green">green</option>
-				</select> 
-				
-				<input type="text" id="title" name="title"/>
-				
-				<input type="submit" class="addReview" name="addReview" value="submit">									
-			</form> 
--->
-			
+						
 			
 		</div>
 <!-- TV Show Select page ENDS -->		
