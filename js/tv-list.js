@@ -38,10 +38,32 @@ $(function(){
 		}
 	});
 	
-	$('h10').click(function(){ //Feedback delete button
+	$('.delete').click(function(){ //Feedback delete button
 		$fVal=$(this).attr('data-id');
 		$('.feedback-id').val($fVal);//ads id to input field
 		$('.deletFdback').click(); //simulates click
+	});
+	
+	$('.deleteFdbackForm').on('submit', function(e){
+		e.preventDefault();
+		$.ajax({
+			type:'post',
+			url: 'list/php',
+			data: $('.deleteFdbackForm').serialize(),
+			success: function(){
+				alert('comment has been deleted');
+			}
+			
+		})
+		
+	})
+	
+	
+	
+	$('.deleteRev').click(function(){ //Review delete button
+		$fVal=$(this).attr('data-id');
+		$('.show-pid').val($fVal);//ads id to input field
+ 		$('.deleteReview').click(); //simulates click
 	});
 	
 	$('.list-icon').click(function(){
@@ -58,6 +80,9 @@ $(function(){
 		$('.overlay-tv-select').addClass('overlay-tv-select-open');
 		$('html, body').css('overflow', 'hidden'); 
 	});
+	
+	 $('.tvTable').next('div').hide(); // Hides delet button directly after the white area
+	 
 	
 //////////// TV MAZE API STARTS ////////////
 

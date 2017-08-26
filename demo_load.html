@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title> Basic Foundation </title> 
+		
+		<!-- Normalize CSS Stylesheet -->
+		<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+		
+		<!-- Custom Stylesheet -->
+		<link rel="stylesheet" href="assets/css/cssBasic.css">
+		
+		<!-- jQuery Library-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+		<!-- Custom jQuery -->
+		<script src="assets/js/   .js"></script>
+		
+	<style>
+		#box{
+			width: 200px;
+			height: 200px;
+			background-color: #f90;
+			cursor: pointer;
+		}
+		p{
+			margin-top: 50px;
+		}
+	</style>
+		
+
+
+	</head>
+
+	<body>
+		
+		<div id="div1"><h2></h2></div>
+		
+		<button>Get External Content</button>
+		
+	<script>
+		
+	setInterval(function(){   // Load txt page
+		 $("#div1").load("test.txt");
+		 checkChar();
+	},5000);	
+	
+	start=0;
+	
+	function checkChar(){  // Count character length
+		setTimeout(function(){
+			cnt=$('#div1').text().length;
+			
+			if(start!=cnt){	
+			alert("start does not equal character count");
+			start=cnt
+			}
+			alert("start equals "+start);
+			
+		},1000);
+	}	
+
+	</script> 
+		
+	</body>
+	
+</html>

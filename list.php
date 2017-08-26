@@ -23,11 +23,13 @@
 		
 		<div class="banner">
 			<div class="logo"></div>
-			<div class="icon-nav-wrapper">
-				<div class="list-icon icon-style icon-nav-active"></div>
-				<div class="tv-icon icon-style"></div>
-			</div>
 		</div>
+		
+		<div class="icon-nav-wrapper">
+			<div class="list-icon icon-style icon-nav-active"></div>
+			<div class="tv-icon icon-style"></div>
+		</div>
+
 		
 <!-- TV Show Select page STARTS -->		
 		<div class="overlay-tv-select overlay-tv-select-close">
@@ -62,13 +64,16 @@
 		<div class="wrapper">
 			
 			<!-- Delete single feedback -->
-			<form action="list.php" method="post"  class="deleteForm" autocomplete='off' style="display:none">
-				
-				<input type="text" id="feedback-id" name="feedback-id" class="feedback-id"/>
-				
-				<input type="submit" class="deletFdback" name="deletFdback" value="submit">	
-								
+			<form action="list.php" method="post" name='deleteFdbackForm' class="deleteFdbackForm" autocomplete='off' style="display:none">				
+				<input type="text" id="feedback-id" name="feedback-id" class="feedback-id"/>				
+				<input type="submit" class="deletFdback" name="deletFdback" value="submit">								
 			</form> 
+			
+			<!-- Delete entire review -->
+			<form action="list.php" method="post"  class="deleteReviewForm" autocomplete='off' style="display:none">			
+				<input type="text" id="show-pid" name="show-pid" class="show-pid"/>				
+				<input type="submit" class="deleteReview" name="deleteReview" value="submit">								
+			</form>
 					
 						
 			<!-- This form adds feedback to conversation-->

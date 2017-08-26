@@ -161,8 +161,8 @@ function displayTVList(){
 
     foreach ($ds as $row){
         if($row["box"]=="boxOpen") { echo "<div class='".$row["showid"]." greyBar clearfix'>";}
-        if($row["box"]=="boxReview") { echo "<table class='tvTable'><tbody><tr><td colspan='2'><div class='boxUnderline'><div class='profile-reviewer'></div><h18>Jason Dobbins</h18><h17>".$row["review"]."</h17></div></td></tr><td valign='top'><img src='".$row["tvphoto"]."'></td><td valign='top'><h14>".$row["title"]."</h14><h15>".$row["summary"]."</h15></td><tbody></table>";} 
-        if($row["box"]=="boxReview" || $row["box"]=="boxResponse"){echo "<div class='".$row["showid"]." box'><h16>".$row["feedback"]."</h16><div class='deleteFdback-wrapper'><h10 data-id='".$row["id"]."'>Delete</h10></div></div>";}
+        if($row["box"]=="boxReview") { echo "<table class='tvTable'><tbody><tr><td colspan='2'><div class='boxUnderline'><div class='profile-reviewer'></div><h17><h18>Jason Dobbins  </h18>".$row["review"]."</h17><div data-id='".$row["showid"]."'class='deleteRev'></div></div></td></tr><td valign='top'><img src='".$row["tvphoto"]."'></td><td valign='top'><h14>".$row["title"]."</h14><h15>".$row["summary"]."</h15></td><tbody></table>";} 
+        if($row["box"]=="boxReview" || $row["box"]=="boxResponse"){echo "<div class='".$row["showid"]." box'><h16>".$row["feedback"]."</h16><div class='deleteFdback-wrapper'><div class='delete' data-id='".$row["id"]."'></div></div></div>";}
         if($row["box"]=="boxClose") { echo "<div class='profile-addComment'></div><div contentEditable='true' class='enterCommentBox'>Write a comment...</div></div>";}
 
     }
@@ -173,7 +173,15 @@ function displayTVList(){
 if(isset($_POST["deletFdback"])){
 		$db = openDB();
         $sql ="DELETE FROM `user` WHERE id = "."'".$_POST["feedback-id"]."'"; 
-        $result = $db->query($sql);
-	     
+        $result = $db->query($sql);	     
+}
+
+
+/////////////////////////// Delete Review ///////////////////////////
+if(isset($_POST["deleteReview"])){
+// 	   echo "<script>alert('".$_POST["show-pid"]."')</script>";
+		$db = openDB();
+        $sql ="DELETE FROM `user` WHERE showid = "."'".$_POST["show-pid"]."'"; 
+        $result = $db->query($sql);	     
 }
 ?>
